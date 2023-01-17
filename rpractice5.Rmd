@@ -1,0 +1,45 @@
+---
+title: "rpractice5"
+author: "Duc Viet Mai"
+date: "2022-12-08"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Install packages**
+
+```{r, warning=FALSE, include=FALSE}
+library(Hmisc)
+library(corrplot)
+```
+
+**Set working directory**
+
+```{r}
+setwd("c:/Users/RicKeHHHHH/OneDrive/Máy tính/ALY6010")
+df <- read.csv("data.csv")
+```
+
+**Part 1**
+
+```{r}
+newdf <- na.omit(df[4:8])
+(corrtable <- cor(newdf))
+corrplot(corrtable)
+
+#Heat map
+heatmap(x = corrtable, col = blues9, symm = TRUE)
+```
+
+**Part 2**
+
+```{r}
+fit <- lm(outcome ~ smoker + hrt_months + wbc + age, data = newdf)
+summary(fit)
+```
+
